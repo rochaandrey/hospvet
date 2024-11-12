@@ -5,5 +5,5 @@ public enum Especialidade {
     CLINICO_GERAL,
     ORTOPEDISTA,
     OTORRINO,
-    CARDIOLOGISTA
+    CARDIOLOGISTAa
 }
