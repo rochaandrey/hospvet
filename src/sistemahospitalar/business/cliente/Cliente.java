@@ -1,7 +1,7 @@
-package sistemahospitalar.models.cliente;
+package sistemahospitalar.business.cliente;
 
-import sistemahospitalar.models.geral.Pessoa;
-import sistemahospitalar.models.geral.Sexo;
+import sistemahospitalar.business.geral.Pessoa;
+import sistemahospitalar.business.geral.Sexo;
 
 public class Cliente extends Pessoa {
     private Plano plano;

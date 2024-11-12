@@ -1,4 +1,4 @@
-package sistemahospitalar.models.medico;
+package sistemahospitalar.business.medico;
 
 public enum Especialidade {
     PEDIATRA("Pediatra"),
