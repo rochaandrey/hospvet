@@ -1,4 +1,9 @@
 package sistemahospitalar.models.medico;
 
-public class Especialidade {
+public enum Especialidade {
+    PEDIATRA,
+    CLINICO_GERAL,
+    ORTOPEDISTA,
+    OTORRINO,
+    CARDIOLOGISTA
 }
