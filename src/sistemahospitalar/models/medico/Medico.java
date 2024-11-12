@@ -11,5 +11,8 @@ public class Medico extends Pessoa {
         super(nome, cpf, dataDeNascimento, sexo);
         this.CRM = CRM;
         this.especialidade = especialidade;
+
     }
+
+
 }
