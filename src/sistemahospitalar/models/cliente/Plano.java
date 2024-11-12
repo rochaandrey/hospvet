@@ -1,4 +1,4 @@
-package sistemahospitalar.modulos.cliente;
+package sistemahospitalar.models.cliente;
 
 public enum Plano {
     SUS("SUS"),

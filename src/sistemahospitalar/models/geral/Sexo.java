@@ -1,4 +1,4 @@
-package sistemahospitalar.modulos.geral;
+package sistemahospitalar.models.geral;
 
 public enum Sexo {
     MASCULINO("Masculino"),

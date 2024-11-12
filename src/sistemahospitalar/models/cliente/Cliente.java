@@ -1,22 +1,18 @@
-package sistemahospitalar.modulos.cliente;
+package sistemahospitalar.models.cliente;
 
-import sistemahospitalar.funcoes.Exames;
-import sistemahospitalar.modulos.geral.Pessoa;
-import sistemahospitalar.modulos.geral.Sexo;
-
-import java.util.ArrayList;
-import java.util.List;
+import sistemahospitalar.models.geral.Pessoa;
+import sistemahospitalar.models.geral.Sexo;
 
 public class Cliente extends Pessoa {
     private Plano plano;
-    private List<Historico> historico;  // historico do paciente
-    private List<Exames> examesMarcados;  // consultas pendentes
+    /*private List<Historico> historico;  // historico do paciente
+    private List<Exames> examesMarcados;  // consultas pendentes*/
 
     public Cliente(String nome, String cpf, String dataDeNascimento, Sexo sexo, Plano plano) {
         super(nome, cpf, dataDeNascimento, sexo);
         this.plano = plano;
-        this.historico = new ArrayList<>();
-        this.examesMarcados = new ArrayList<>();
+        /*this.historico = new ArrayList<>();
+        this.examesMarcados = new ArrayList<>();*/
     }
 
     public Plano getPlano() {

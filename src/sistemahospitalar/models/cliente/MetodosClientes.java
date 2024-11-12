@@ -1,4 +1,4 @@
-package sistemahospitalar.modulos.cliente;
+package sistemahospitalar.models.cliente;
 
 public interface MetodosClientes {
     void marcarConsulta();

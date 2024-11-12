@@ -1,7 +1,7 @@
-package sistemahospitalar.modulos.medico;
+package sistemahospitalar.models.medico;
 
-import sistemahospitalar.modulos.geral.Pessoa;
-import sistemahospitalar.modulos.geral.Sexo;
+import sistemahospitalar.models.geral.Pessoa;
+import sistemahospitalar.models.geral.Sexo;
 
 public class Medico extends Pessoa {
     private Especialidade especialidade;

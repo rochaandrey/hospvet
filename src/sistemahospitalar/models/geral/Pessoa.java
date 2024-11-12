@@ -1,4 +1,4 @@
-package sistemahospitalar.modulos.geral;
+package sistemahospitalar.models.geral;
 
 public abstract class Pessoa {
     protected String nome;
