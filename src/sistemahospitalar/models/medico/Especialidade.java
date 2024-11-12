@@ -4,6 +4,6 @@ public enum Especialidade {
     PEDIATRA,
     CLINICO_GERAL,
     ORTOPEDISTA,
-    OTORRINO,
+    OTORRINOLARINGOLOGISTA,
     CARDIOLOGISTA
 }
