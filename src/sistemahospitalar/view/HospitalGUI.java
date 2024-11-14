@@ -1,5 +1,6 @@
 package sistemahospitalar.view;
 
+import sistemahospitalar.business.cliente.Cliente;
 import sistemahospitalar.business.cliente.Plano;
 import sistemahospitalar.business.geral.Sexo;
 
@@ -10,6 +11,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static sistemahospitalar.business.cliente.Plano.planByID;
+import static sistemahospitalar.repository.Listas.clientList;
 
 public class HospitalGUI {
     static Scanner scanner = new Scanner(System.in);
@@ -97,6 +99,9 @@ public class HospitalGUI {
             }
         }while(plano!=null);
 
+        Cliente cliente = new Cliente(nome,cpf,dataFormatada,sexo,plano);
+        clientList.add(cliente);
+        System.out.println("Cliente criado!");
     }
 
     public static boolean validCPF(String cpf){
