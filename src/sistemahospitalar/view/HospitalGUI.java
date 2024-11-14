@@ -17,12 +17,45 @@ public class HospitalGUI {
     static Scanner scanner = new Scanner(System.in);
 
     public static void firstPage(){
-        System.out.println("___________________________________");
-        System.out.println("1 - Cadastrar-se");
-        System.out.println("2 - Login");
+        int random;
+        do {
+            random = 0;
+            System.out.println("___________________________________");
+            System.out.println("1 - Cadastrar-se");
+            System.out.println("2 - Login");
+            System.out.println("3 - Sair");
+
+            switch (scanner.nextInt()){
+                case 1:
+                    scanner.nextLine();
+                    cadastro();
+                    break;
+                case 2:
+                    scanner.nextLine();
+                    login();
+                    break;
+                case 3:
+                    System.exit(0);
+                    break;
+                default:
+                    scanner.nextLine();
+
+                    random = 3;
+                    System.out.println("Digite um número válido!");
+                    scanner.nextLine();
+                    break;
+            }
+        }while(random!=3);
     }
 
-    public static void cadastro(String nome, String cpf, String dataDeNascimento, Sexo sexo, Plano plano){
+    public static void cadastro(){
+        String nome;
+        String cpf = "";
+        String dataDeNascimento;
+        Sexo sexo = null;
+        Plano plano;
+
+
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate hoje = LocalDate.now();
         LocalDate dataFormatada = null;
@@ -32,19 +65,7 @@ public class HospitalGUI {
         System.out.println("Digite seu nome COMPLETO: ");
         nome = scanner.nextLine();
 
-        do{
-            System.out.println("Digite seu cpf: ");
-
-            try {
-                cpf = scanner.nextLine().replaceAll("^[0-9]","");
-            } catch (InputMismatchException e) {
-                System.out.println("CPF INVÁLIDO! USE APENAS NÚMEROS ");
-            }
-
-            if(!validCPF(cpf)){
-                System.out.println("CPF INVÁLIDO! DIGITE OS 11 NÚMEROS CORRETAMENTE ");
-            }
-        }while(cpf.length() != 11);
+        pedirCPF(cpf);
 
         do{
             System.out.println("Digite sua data de nascimento (dd,MM,yyyy) :");
@@ -97,15 +118,58 @@ public class HospitalGUI {
                     break;
                 }
             }
-        }while(plano!=null);
+        }while(plano==null);
 
         Cliente cliente = new Cliente(nome,cpf,dataFormatada,sexo,plano);
         clientList.add(cliente);
         System.out.println("Cliente criado!");
     }
 
-    public static boolean validCPF(String cpf){
+    public static void login(){
+        String cpf;
+        boolean clienteEncontrado;
+
+        do {
+            cpf = " ";
+            clienteEncontrado = false;
+
+            pedirCPF(cpf);
+            for (Cliente cliente : clientList) {
+                if (cliente.getCpf().equals(cpf)) {
+                    clienteEncontrado = true;
+                    telaCliente();
+                    break;
+                }
+            }
+
+            if (!clienteEncontrado) {
+                System.out.println("o cliente NÃO EXISTE na base de dados");
+            }
+        }while(!clienteEncontrado);
+    }
+
+    public static void telaCliente(){
+
+    }
+
+    public static boolean isvalidCPF(String cpf){
         return cpf.length()==11;
+    }
+    //como eu uso isso + de uma vez eu escrevi como um método
+    public static void pedirCPF(String cpf){
+        do{
+            System.out.println("Digite seu cpf: ");
+
+            try {
+                cpf = scanner.nextLine().replaceAll("^[0-9]","");
+            } catch (InputMismatchException e) {
+                System.out.println("CPF INVÁLIDO! USE APENAS NÚMEROS ");
+            }
+
+            if(!isvalidCPF(cpf)){
+                System.out.println("CPF INVÁLIDO! DIGITE OS 11 NÚMEROS CORRETAMENTE ");
+            }
+        }while(cpf.length() != 11);
     }
 
     public static boolean validSEX(Sexo sexo){

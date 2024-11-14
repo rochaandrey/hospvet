@@ -1,6 +1,7 @@
 package sistemahospitalar.business.geral;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class Pessoa {
     protected String nome;
@@ -44,4 +45,11 @@ public abstract class Pessoa {
         this.sexo = sexo;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pessoa pessoa = (Pessoa) o;
+        return Objects.equals(cpf, pessoa.cpf);
+    }
 }
