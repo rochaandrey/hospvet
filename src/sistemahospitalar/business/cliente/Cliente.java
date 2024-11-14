@@ -3,12 +3,14 @@ package sistemahospitalar.business.cliente;
 import sistemahospitalar.business.geral.Pessoa;
 import sistemahospitalar.business.geral.Sexo;
 
+import java.time.LocalDate;
+
 public class Cliente extends Pessoa {
     private Plano plano;
     /*private List<Historico> historico;  // historico do paciente
     private List<Exames> examesMarcados;  // consultas pendentes*/
 
-    public Cliente(String nome, String cpf, String dataDeNascimento, Sexo sexo, Plano plano) {
+    public Cliente(String nome, String cpf, LocalDate dataDeNascimento, Sexo sexo, Plano plano) {
         super(nome, cpf, dataDeNascimento, sexo);
         this.plano = plano;
         /*this.historico = new ArrayList<>();
