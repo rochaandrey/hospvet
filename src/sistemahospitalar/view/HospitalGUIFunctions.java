@@ -8,24 +8,38 @@ import java.util.Scanner;
 public class HospitalGUIFunctions {
     static Scanner scanner = new Scanner(System.in);
 
-    public static boolean isvalidCPF(String cpf){
-        return cpf.length()==11;
-    }
-
-    public static void pedirCPF(String cpf){
+    public static String pedirCPF(){
+        String cpf = "";
         do{
+            variasLinhas();
+            System.out.println("___________________________________");
             System.out.println("Digite seu cpf: ");
 
             try {
-                cpf = scanner.nextLine().replaceAll("^[0-9]","");
+                cpf = scanner.nextLine().replaceAll("[^0-9]","");
             } catch (InputMismatchException e) {
+                variasLinhas();
                 System.out.println("CPF INVÁLIDO! USE APENAS NÚMEROS ");
             }
 
-            if(!isvalidCPF(cpf)){
+            if(!isValidCPF(cpf)){
+                variasLinhas();
                 System.out.println("CPF INVÁLIDO! DIGITE OS 11 NÚMEROS CORRETAMENTE ");
             }
-        }while(cpf.length() != 11);
+        }while(!isValidCPF(cpf));
+        return cpf;
+    }
+
+    public static boolean isValidCPF(String cpf){
+        return cpf.length()==11;
+    }
+
+    public static boolean isValidName(String nome){
+        String[] parts = nome.trim().split("\\s+");
+        if (parts.length < 3) {
+            return false;
+        }
+        return true;
     }
 
     public static boolean validSEX(Sexo sexo){

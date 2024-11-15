@@ -1,4 +1,4 @@
-package sistemahospitalar.repository;
+package sistemahospitalar.view;
 
 import sistemahospitalar.business.cliente.Cliente;
 
