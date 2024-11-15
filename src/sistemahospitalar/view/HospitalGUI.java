@@ -7,11 +7,11 @@ import sistemahospitalar.business.geral.Sexo;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static sistemahospitalar.business.cliente.Plano.planByID;
 import static sistemahospitalar.repository.Listas.clientList;
+import static sistemahospitalar.view.HospitalGUIFunctions.*;
 
 public class HospitalGUI {
     static Scanner scanner = new Scanner(System.in);
@@ -206,40 +206,6 @@ public class HospitalGUI {
                 telaCliente(cliente);
                 break;
         }
-
-
-
-
-
     }
 
-    public static boolean isvalidCPF(String cpf){
-        return cpf.length()==11;
-    }
-
-    public static void pedirCPF(String cpf){
-        do{
-            System.out.println("Digite seu cpf: ");
-
-            try {
-                cpf = scanner.nextLine().replaceAll("^[0-9]","");
-            } catch (InputMismatchException e) {
-                System.out.println("CPF INVÁLIDO! USE APENAS NÚMEROS ");
-            }
-
-            if(!isvalidCPF(cpf)){
-                System.out.println("CPF INVÁLIDO! DIGITE OS 11 NÚMEROS CORRETAMENTE ");
-            }
-        }while(cpf.length() != 11);
-    }
-
-    public static boolean validSEX(Sexo sexo){
-        return sexo == Sexo.FEMININO || sexo == Sexo.MASCULINO;
-    }
-
-    public static void variasLinhas(){
-        for(int i=0;i<40;i++){
-            System.out.println();
-        }
-    }
 }
