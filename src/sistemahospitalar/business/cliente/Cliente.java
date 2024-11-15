@@ -23,12 +23,10 @@ public class Cliente extends Pessoa {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "nome='" + nome + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", dataDeNascimento='" + dataDeNascimento + '\'' +
-                ", sexo=" + sexo +
-                "plano=" + plano +'}';
+        return nome+" - "+cpf+
+                "\nDATA DE NASCIMENTO: "+dataDeNascimento+
+                " - SEXO: "+sexo+
+                "\nPLANO: "+plano;
     }
 
     // fazer os métodos para mexer na lista

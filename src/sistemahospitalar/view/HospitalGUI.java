@@ -137,7 +137,7 @@ public class HospitalGUI {
             for (Cliente cliente : clientList) {
                 if (cliente.getCpf().equals(cpf)) {
                     clienteEncontrado = true;
-                    telaCliente();
+                    telaCliente(cliente);
                     break;
                 }
             }
@@ -148,14 +148,75 @@ public class HospitalGUI {
         }while(!clienteEncontrado);
     }
 
-    public static void telaCliente(){
+    public static void telaCliente(Cliente cliente){
+        variasLinhas();
+        int input;
+
+        System.out.println(cliente.toString());
+        System.out.println(" ");
+        System.out.println("1 - Marcar consulta");
+        System.out.println("2 - Remarcar consulta");
+        System.out.println("3 - Realizar exame de imagem");
+        System.out.println("4 - Mudar de plano");
+        System.out.println("5 - Gerar boleto");
+        System.out.println("6 - Gerar histórico");
+        System.out.println("7 - voltar");
+
+        input = scanner.nextInt();
+        scanner.nextLine();
+
+        switch ( input ){
+            case 1:
+                marcarConsulta();
+                scanner.nextLine();
+                telaCliente(cliente);
+                break;
+            case 2:
+                remarcarConsulta();
+                scanner.nextLine();
+                telaCliente(cliente);
+                break;
+            case 3:
+                exameImagem();
+                scanner.nextLine();
+                telaCliente(cliente);
+                break;
+            case 4:
+                mudarPlano();
+                scanner.nextLine();
+                telaCliente(cliente);
+                break;
+            case 5:
+                gerarBoleto();
+                scanner.nextLine();
+                telaCliente(cliente);
+                break;
+            case 6:
+                gerarHistorico();
+                scanner.nextLine();
+                telaCliente(cliente);
+                break;
+            case 7:
+                variasLinhas();
+                firstPage();
+                break;
+            default:
+                System.out.println("Digite um número válido!");
+                scanner.nextLine();
+                telaCliente(cliente);
+                break;
+        }
+
+
+
+
 
     }
 
     public static boolean isvalidCPF(String cpf){
         return cpf.length()==11;
     }
-    //como eu uso isso + de uma vez eu escrevi como um método
+
     public static void pedirCPF(String cpf){
         do{
             System.out.println("Digite seu cpf: ");
@@ -176,5 +237,9 @@ public class HospitalGUI {
         return sexo == Sexo.FEMININO || sexo == Sexo.MASCULINO;
     }
 
-
+    public static void variasLinhas(){
+        for(int i=0;i<40;i++){
+            System.out.println();
+        }
+    }
 }
