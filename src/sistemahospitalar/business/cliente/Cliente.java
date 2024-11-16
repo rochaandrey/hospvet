@@ -25,7 +25,7 @@ public class Cliente extends Pessoa {
     public String toString() {
         return nome+" - "+cpf+
                 "\nDATA DE NASCIMENTO: "+dataDeNascimento+
-                " - SEXO: "+sexo+
+                " | SEXO: "+sexo+
                 "\nPLANO: "+plano;
     }
 

@@ -5,11 +5,8 @@ import sistemahospitalar.business.cliente.Plano;
 import sistemahospitalar.business.geral.Sexo;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-import static sistemahospitalar.business.cliente.Plano.planByID;
 import static sistemahospitalar.view.Listas.clientList;
 import static sistemahospitalar.view.HospitalGUIFunctions.*;
 import static sistemahospitalar.view.Functions.*;
@@ -57,93 +54,18 @@ public class HospitalGUI {
 
     public static void cadastro(){
         String nome;
-        String cpf = "";
-        String dataDeNascimento;
-        Sexo sexo = null;
-        Plano plano = null;
-        int value;
+        String cpf;
+        LocalDate data;
+        Sexo sexo;
+        Plano plano;
 
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate hoje = LocalDate.now();
-        LocalDate dataFormatada = null;
-
-        variasLinhas();
-        do {
-            System.out.println("___________________________________");
-            System.out.println("Digite seu nome COMPLETO: ");
-            nome = scanner.nextLine();
-
-            if (!isValidName(nome)) {
-                variasLinhas();
-                System.out.println("Escreva seu nome completo");
-            }
-        } while (!isValidName(nome));
-
+        nome = pedirNome();
         cpf = pedirCPF();
+        data = definitDataDeNascimento();
+        sexo = definirSexo();
+        plano = escolherPlano();
 
-        variasLinhas();
-        do{
-            System.out.println("___________________________________");
-            System.out.println("Digite sua data de nascimento (dd/MM/yyyy) :");
-            dataDeNascimento = scanner.nextLine();
-
-            try{
-                dataFormatada = LocalDate.parse(dataDeNascimento, format);
-            }catch(DateTimeParseException e){
-                variasLinhas();
-                System.out.println("Digite a data de nascimento no FORMATO CORRETO! ");
-            }
-
-            if(dataFormatada != null){
-                if(dataFormatada == hoje || dataFormatada.isAfter(hoje)){
-                    dataFormatada = null;
-                    variasLinhas();
-                    System.out.println("Essa data ainda não existe!");
-                }
-            }
-
-        }while(dataFormatada == null);
-
-        variasLinhas();
-        do {
-            System.out.println("___________________________________");
-            System.out.println("Qual o seu sexo?");
-            System.out.println("1 - Masculino");
-            System.out.println("2 - Feminino");
-
-            value = scanner.nextInt();
-            scanner.nextLine();
-
-            if(value == 1){
-                sexo = Sexo.MASCULINO;
-            }else if(value == 2){
-                sexo = Sexo.FEMININO;
-            }else {
-                variasLinhas();
-                System.out.println("DIGITE UMA OPÇÃO VÁLIDA");
-            }
-        }while(!validSEX(sexo));
-
-        do{
-            variasLinhas();
-            System.out.println("___________________________________");
-            System.out.println("Escolha um plano: ");
-            for(Plano plan : Plano.values()){
-                System.out.println(plan.getId()+" - "+plan.getNome());
-            }
-            value = scanner.nextInt();
-
-            scanner.nextLine();
-
-            for(Plano plan : Plano.values()){
-                if(value == plan.getId()){
-                    plano = planByID(value);
-                    break;
-                }
-            }
-        }while(plano==null);
-
-        Cliente cliente = new Cliente(nome,cpf,dataFormatada,sexo,plano);
+        Cliente cliente = new Cliente(nome,cpf,data,sexo,plano);
         clientList.add(cliente);
 
         variasLinhas();
@@ -156,7 +78,6 @@ public class HospitalGUI {
     public static void login(){
         String cpf;
         boolean clienteEncontrado = false;
-        cpf = " ";
 
         variasLinhas();
         cpf = pedirCPF();
@@ -180,7 +101,7 @@ public class HospitalGUI {
         int input;
 
         System.out.println(cliente.toString());
-        System.out.println(" ");
+        System.out.println("-----------------------------------");
         System.out.println("1 - Marcar consulta");
         System.out.println("2 - Remarcar consulta");
         System.out.println("3 - Realizar exame de imagem");
@@ -209,7 +130,7 @@ public class HospitalGUI {
                 telaCliente(cliente);
                 break;
             case 4:
-                mudarPlano();
+                mudarPlano(cliente);
                 scanner.nextLine();
                 telaCliente(cliente);
                 break;
@@ -224,6 +145,11 @@ public class HospitalGUI {
                 telaCliente(cliente);
                 break;
             case 7:
+                atualizarCadastro();
+                scanner.nextLine();
+                telaCliente(cliente);
+                break;
+            case 8:
                 variasLinhas();
                 firstPage();
                 break;
